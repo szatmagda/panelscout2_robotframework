@@ -4,7 +4,7 @@ Library  SeleniumLibrary
 Documentation    Suite description #automated tests for scout website
 
 *** Variables ***
-${LOGIN URL}      https://scouts-test.futbolkolektyw.pl/en
+${LOGIN URL}      https://dareit.futbolkolektyw.pl/en/login
 ${BROWSER}        Chrome
 ${SIGNINBUTTON}     xpath=//*[@type='submit']
 ${EMAILINPUT}    xpath=//*[@id='login']
@@ -41,7 +41,17 @@ Login to the system
     Assert dashboard
     [Teardown]    Close Browser
 
-Filling the form Dodaj Gracza
+Click button Add Player
+    Open login page
+    Type in email
+    Type in password
+    Click on the Sign in button
+    Assert dashboard
+    Click on the Add Player button
+    Assert Add a player
+    [Teardown]    Close Browser
+
+Filling the form Add Player
     Open login page
     Type in email
     Type in password
@@ -119,7 +129,6 @@ Click on the Sign in button
     Click Element   xpath=//*[@type='submit']
 Assert dashboard
     Wait Until Element Is Visible    ${PAGELOGO}
-    Title Should Be    Scouts panel
     Capture Page Screenshot  screenshots/login/dashboard-start.png
 Click on the Add Player button
     Click Element   xpath=//*[text()='Add player']
